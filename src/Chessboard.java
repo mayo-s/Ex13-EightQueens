@@ -115,10 +115,28 @@ public class Chessboard {
 	public void printBoard() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
-				if (board[i][j] != true) {
-					System.out.print("[ ]");
+//				if (board[i][j] != true) {
+//					System.out.print("\u25FD");
+//				} else {
+//					System.out.print("\u25FE");
+//				}
+//			}
+				
+				if (i%2 == 0) {
+					if (j%2 == 0){
+					System.out.print("\u25FD");
+					}
+					else{
+						System.out.print("\u25FE");
+					}
+					
 				} else {
-					System.out.print("[!]");
+					if (j%2 != 0){
+						System.out.print("\u25FD");
+						}
+						else{
+							System.out.print("\u25FE");
+						}
 				}
 			}
 			System.out.println();
