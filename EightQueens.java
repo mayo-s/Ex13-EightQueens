@@ -13,6 +13,7 @@ public class EightQueens {
 		queens = new ArrayList<Queen>();
 		chessboard = new Chessboard(BOARD_DIMENSION);
 		eq.placeQueen(0, 0);
+		eq.printBoard();
 	}
 	
 	private void placeQueen(int x, int y){
@@ -22,7 +23,7 @@ public class EightQueens {
 					queens.add(new Queen(x, y));
 					setThreat(x, y);
 					
-				}					
+				}
 			}
 		}
 	}
@@ -61,5 +62,21 @@ public class EightQueens {
 		
 	}
 	
+	private void printBoard(){
+		for(int x = 0; x < BOARD_DIMENSION; x++){
+			for(int y = 0; y < BOARD_DIMENSION; y++){
+				System.out.print("[");
+				if(chessboard.isThreatened){
+					System.out.print("X");
+				}
+				else{
+
+					System.out.print(" ");
+				}
+				System.out.print("] ");
+			}
+			System.out.println("\n");
+		}
+	}
 
 }
