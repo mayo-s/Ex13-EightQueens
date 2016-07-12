@@ -12,7 +12,7 @@ public class Chessboard {
 	private void setInitialFieldValue(int maxSize){
 		for(int x = 0; x < maxSize; x++){
 			for(int y = 0; y < maxSize; y++){
-				isThreatened = false;				
+				chessboard[x][y] = false;				
 			}
 		}
 	}

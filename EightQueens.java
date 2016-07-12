@@ -24,6 +24,7 @@ public class EightQueens {
 			for (; y < BOARD_DIMENSION; y++) {
 				if (!chessboard.isThreatened(x, y)) {
 					setThreat(x, y);
+					System.out.println("Queen was palced." + x + " " + y);
 					return new Queen(x, y);	
 				}
 			}
@@ -32,37 +33,43 @@ public class EightQueens {
 	}
 
 	private void setThreat(int x, int y) {
-		setDiaThreat(x, y);
-		setVerticalThreat(x);
 		setHorizontalThreat(y);
-	}
-
-	private void setDiaThreat(int x, int y) {
-		if (x <= y) {
-			for (int tempX = 0; y < BOARD_DIMENSION; tempX++) {
-				chessboard.setIsThreat(tempX, y);
-				y++;
-			}
-		}
-		if (y < x) {
-			for (int tempY = 0; x < BOARD_DIMENSION; tempY++) {
-				chessboard.setIsThreat(x, tempY);
-				x++;
-			}
-		}
+		setVerticalThreat(x);
+		setDiaThreat(x, y);
 	}
 
 	private void setHorizontalThreat(int y) {
 		for (int x = 0; x < BOARD_DIMENSION; x++) {
 			chessboard.setIsThreat(x, y);
+			System.out.println("Horizontal Threat was palced." + x + " " + y);
 		}
 	}
 
 	private void setVerticalThreat(int x) {
 		for (int y = 0; y < BOARD_DIMENSION; y++) {
 			chessboard.setIsThreat(x, y);
+			System.out.println("Vertical Threat was palced." + x + " " + y);
 		}
 
+	}
+
+	private void setDiaThreat(int x, int y) {
+		if (x <= y) {
+			int tempY = y - x;
+			for (int tempX = 0; tempY < BOARD_DIMENSION; tempX++) {
+				chessboard.setIsThreat(tempX, tempY);
+				System.out.println("Diagonal Threat was palced." + tempX + " " + tempY);
+				tempY++;
+			}
+		}
+		if (y < x) {
+			int tempX = x - y;
+			for (int tempY = 0; tempX < BOARD_DIMENSION; tempY++) {
+				chessboard.setIsThreat(tempX, tempY);
+				System.out.println("Diagonal Threat was palced." + tempX + " " + tempY);
+				tempX++;
+			}
+		}
 	}
 
 	private void printBoard() {
