@@ -15,7 +15,7 @@ public class Position {
 	}
 	
 	public void setyCord(int yCord){
-		this.xCord = yCord;
+		this.yCord = yCord;
 	}
 	
 	public int getyCord(){
