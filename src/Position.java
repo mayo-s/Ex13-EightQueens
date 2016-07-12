@@ -1,10 +1,10 @@
 
-public class Queen {
+public class Position {
 
 	private int xCord;
 	private int yCord;
 	
-	public Queen(int xCord, int yCord){
+	public Position(int xCord, int yCord){
 		this.xCord = xCord;
 		this.yCord = yCord;
 		
