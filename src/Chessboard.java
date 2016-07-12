@@ -26,7 +26,7 @@ public class Chessboard {
 		int positionX = queen.getxCord();
 		int positionY = queen.getyCord();
 
-		rowThreats(queen);
+		rowThreats(new Position(positionX, 0));
 		colThreats(queen);
 
 		int posXRight = queen.getxCord();
@@ -56,15 +56,10 @@ public class Chessboard {
 		int positionX = curr.getxCord();
 
 		board[positionX][positionY] = true;
-		System.out.println("This is it!" + board[positionX][positionY]);
-		System.out.println(positionX + " and " + positionY);
 
-		if (positionY + 1 < board[positionX].length) {
+		if (positionY + 1 < board[positionY].length) {
 			curr.setyCord(positionY + 1);
 			rowThreats(curr);
-		}
-		else {
-			
 		}
 	}
 
@@ -75,8 +70,8 @@ public class Chessboard {
 		board[positionX][positionY] = true;
 
 		if (positionX + 1 < board.length) {
-			curr.setyCord(positionX + 1);
-			rowThreats(curr);
+			curr.setxCord(positionX + 1);
+			colThreats(curr);
 		}
 	}
 
@@ -85,11 +80,12 @@ public class Chessboard {
 		int positionX = curr.getxCord();
 
 		board[positionX][positionY] = true;
+		
 
-		if (positionX + 1 < board.length || positionY + 1 < board[positionX].length) {
+		if (positionX + 1 < board.length || positionY + 1 < board[positionY].length) {
 			curr.setyCord(positionX + 1);
 			curr.setyCord(positionY + 1);
-			rowThreats(curr);
+			diaRightThreats(curr);
 		}
 	}
 
@@ -98,11 +94,12 @@ public class Chessboard {
 		int positionX = curr.getxCord();
 
 		board[positionX][positionY] = true;
+		System.out.println("Yeahi!");
 
-		if (positionX - 1 < board.length || positionY - 1 < board[positionX].length) {
-			curr.setyCord(positionX - 1);
+		if ((positionX - 1) >= 0 && (positionY - 1) >= 0) {
+			curr.setxCord(positionX - 1);
 			curr.setyCord(positionY - 1);
-			rowThreats(curr);
+			diaLeftThreats(curr);
 		}
 	}
 
