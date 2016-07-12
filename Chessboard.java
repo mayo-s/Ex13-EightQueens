@@ -17,6 +17,10 @@ public class Chessboard {
 		}
 	}
 	
+	public void setIsThreat(int x, int y){
+		chessboard[x][y] = true;
+	}
+	
 	public boolean isThreatened(int x, int y){
 		return isThreatened; 
 	}

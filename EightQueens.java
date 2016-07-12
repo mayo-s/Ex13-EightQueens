@@ -28,7 +28,38 @@ public class EightQueens {
 	}
 	
 	private void setThreat(int x, int y){
+		setDiaThreat(x, y);
+		setVerticalThreat(x);
+		setHorizontalThreat(y);
+	}
+	
+	private void setDiaThreat(int x, int y){
+		if(x <= y){
+			for(int tempX = 0; y < BOARD_DIMENSION; tempX++){
+				chessboard.setIsThreat(tempX, y);
+				y++;
+			}
+		}
+		if(y < x){
+			for(int tempY = 0; x < BOARD_DIMENSION; tempY++){
+				chessboard.setIsThreat(x, tempY);
+				x++;
+			}
+		}
+	}
+	
+	private void setHorizontalThreat(int y){
+		for(int x = 0; x < BOARD_DIMENSION; x++){
+			chessboard.setIsThreat(x, y);
+		}
+	}
+	
+	private void setVerticalThreat(int x){
+		for(int y = 0; y < BOARD_DIMENSION; y++){
+			chessboard.setIsThreat(x, y);
+		}
 		
 	}
+	
 
 }
