@@ -45,4 +45,29 @@ public class Chessboard {
 			rowThreats(curr);
 		}
 	}
+	
+	public void diaRightThreats(Position curr){
+		int positionY = curr.getyCord();
+		int positionX = curr.getxCord();
+		
+		board[positionX][positionY] = true;
+		
+		if (positionX + 1 < board.length || positionY + 1 < board[positionX].length ) {
+			curr.setyCord(positionX + 1);
+			curr.setyCord(positionY + 1);
+			rowThreats(curr);
+		}
+	}
+	public void diaLeftThreats(Position curr){
+		int positionY = curr.getyCord();
+		int positionX = curr.getxCord();
+		
+		board[positionX][positionY] = true;
+		
+		if (positionX - 1 < board.length || positionY - 1 < board[positionX].length ) {
+			curr.setyCord(positionX - 1);
+			curr.setyCord(positionY - 1);
+			rowThreats(curr);
+		}
+	}
 }
