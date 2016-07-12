@@ -8,13 +8,13 @@ public class Chessboard {
 	public Chessboard(int dimension) {
 		board = new Boolean[dimension][dimension];
 		queens = new ArrayList<Position>();
-		
-		for (int i = 0; i < board.length; i++){
+
+		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
 				board[i][j] = false;
 			}
 		}
-		
+
 	}
 
 	public void setQueen(int xCord, int yCord) {
@@ -31,7 +31,7 @@ public class Chessboard {
 
 		int posXRight = queen.getxCord();
 		int posYRight = queen.getyCord();
-		
+
 		if (positionX < positionY) {
 
 			posXRight = positionX - (positionX - 1);
@@ -80,10 +80,9 @@ public class Chessboard {
 		int positionX = curr.getxCord();
 
 		board[positionX][positionY] = true;
-		
 
-		if (positionX + 1 < board.length || positionY + 1 < board[positionY].length) {
-			curr.setyCord(positionX + 1);
+		if (positionX + 1 < board.length && positionY + 1 < board.length) {
+			curr.setxCord(positionX + 1);
 			curr.setyCord(positionY + 1);
 			diaRightThreats(curr);
 		}
@@ -94,11 +93,11 @@ public class Chessboard {
 		int positionX = curr.getxCord();
 
 		board[positionX][positionY] = true;
-		System.out.println("Yeahi!");
 
-		if ((positionX - 1) >= 0 && (positionY - 1) >= 0) {
+
+		if ((positionX - 1) >= 0 && (positionY + 1) < board.length) {
 			curr.setxCord(positionX - 1);
-			curr.setyCord(positionY - 1);
+			curr.setyCord(positionY + 1);
 			diaLeftThreats(curr);
 		}
 	}
@@ -112,14 +111,13 @@ public class Chessboard {
 			return false;
 		}
 	}
-	
-	public void printBoard(){
-		for ( int i = 0; i < board.length; i++){
-			for ( int j = 0; j < board.length; j++){
-				if (board[i][j] == true){
+
+	public void printBoard() {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if (board[i][j] != true) {
 					System.out.print("[ ]");
-				}
-				else{
+				} else {
 					System.out.print("[!]");
 				}
 			}
