@@ -27,27 +27,27 @@ public class Chessboard {
 		int positionY = queen.getyCord();
 
 		rowThreats(new Position(positionX, 0));
-		colThreats(queen);
+		colThreats(new Position(0, positionY));
 
 		int posXRight = queen.getxCord();
 		int posYRight = queen.getyCord();
 
 		if (positionX < positionY) {
 
-			posXRight = positionX - (positionX - 1);
-			posYRight = positionY - (positionX - 1);
+			posXRight = positionX - (positionX);
+			posYRight = positionY - (positionX);
 
 		} else {
 
-			posYRight = positionY - (positionY - 1);
-			posXRight = positionX - (positionY - 1);
+			posYRight = positionY - (positionY);
+			posXRight = positionX - (positionY);
 
 		}
 
 		Position diaRightPosition = new Position(posXRight, posYRight);
 
-		diaRightThreats(queen);
-		diaLeftThreats(queen);
+		diaRightThreats(diaRightPosition);
+//		diaLeftThreats(queen);
 
 	}
 
@@ -94,7 +94,6 @@ public class Chessboard {
 
 		board[positionX][positionY] = true;
 
-
 		if ((positionX - 1) >= 0 && (positionY + 1) < board.length) {
 			curr.setxCord(positionX - 1);
 			curr.setyCord(positionY + 1);
@@ -115,30 +114,31 @@ public class Chessboard {
 	public void printBoard() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
-//				if (board[i][j] != true) {
-//					System.out.print("\u25FD");
-//				} else {
-//					System.out.print("\u25FE");
-//				}
-//			}
 				
-				if (i%2 == 0) {
-					if (j%2 == 0){
-					System.out.print("\u25FD");
-					}
-					else{
-						System.out.print("\u25FE");
-					}
-					
-				} else {
-					if (j%2 != 0){
-						System.out.print("\u25FD");
-						}
-						else{
-							System.out.print("\u25FE");
-						}
-				}
-			}
+				//Mark threats
+				if (board[i][j] != true) {
+				 System.out.print("\u25FD");
+				 } else {
+				 System.out.print("\u25FE");
+				 }
+				 }
+
+				// Normal chess board look
+//				if (i % 2 == 0) {
+//					if (j % 2 == 0) {
+//						System.out.print("\u25FD");
+//					} else {
+//						System.out.print("\u25FE");
+//					}
+//
+//				} else {
+//					if (j % 2 != 0) {
+//						System.out.print("\u25FD");
+//					} else {
+//						System.out.print("\u25FE");
+//					}
+//				}
+//			 }
 			System.out.println();
 		}
 	}
