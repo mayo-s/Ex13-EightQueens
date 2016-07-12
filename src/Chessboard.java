@@ -32,12 +32,12 @@ public class Chessboard {
 		int posXRight = queen.getxCord();
 		int posYRight = queen.getyCord();
 
-		if (positionX < positionY) {
+		if (positionX <= positionY) {
 
 			posXRight = positionX - (positionX);
 			posYRight = positionY - (positionX);
 
-		} else {
+		} else if (positionX > positionY) {
 
 			posYRight = positionY - (positionY);
 			posXRight = positionX - (positionY);
@@ -47,7 +47,22 @@ public class Chessboard {
 		Position diaRightPosition = new Position(posXRight, posYRight);
 
 		diaRightThreats(diaRightPosition);
-//		diaLeftThreats(queen);
+
+		int posXLeft = queen.getxCord();
+		int posYLeft = queen.getyCord();
+
+		while ((posXLeft < board.length - 1) && (posYLeft > 0)) {
+
+
+			posXLeft = posXLeft + 1;
+			posYLeft = posYLeft - 1;
+
+		}
+
+		System.out.println("This is Y:" + posYLeft);
+		System.out.println("This is X:" + posXLeft);
+		Position diaLeftPosition = new Position(posYLeft, posXLeft);
+		diaLeftThreats(diaLeftPosition);
 
 	}
 
@@ -94,9 +109,9 @@ public class Chessboard {
 
 		board[positionX][positionY] = true;
 
-		if ((positionX - 1) >= 0 && (positionY + 1) < board.length) {
-			curr.setxCord(positionX - 1);
-			curr.setyCord(positionY + 1);
+		if ((positionX + 1) < board.length && (positionY - 1) >= 0) {
+			curr.setxCord(positionX + 1);
+			curr.setyCord(positionY - 1);
 			diaLeftThreats(curr);
 		}
 	}
@@ -114,31 +129,31 @@ public class Chessboard {
 	public void printBoard() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
-				
-				//Mark threats
-				if (board[i][j] != true) {
-				 System.out.print("\u25FD");
-				 } else {
-				 System.out.print("\u25FE");
-				 }
-				 }
 
-				// Normal chess board look
-//				if (i % 2 == 0) {
-//					if (j % 2 == 0) {
-//						System.out.print("\u25FD");
-//					} else {
-//						System.out.print("\u25FE");
-//					}
-//
-//				} else {
-//					if (j % 2 != 0) {
-//						System.out.print("\u25FD");
-//					} else {
-//						System.out.print("\u25FE");
-//					}
-//				}
-//			 }
+				// Mark threats
+				if (board[i][j] != true) {
+					System.out.print("\u25FD");
+				} else {
+					System.out.print("\u25FE");
+				}
+			}
+
+			// Normal chess board look
+			// if (i % 2 == 0) {
+			// if (j % 2 == 0) {
+			// System.out.print("\u25FD");
+			// } else {
+			// System.out.print("\u25FE");
+			// }
+			//
+			// } else {
+			// if (j % 2 != 0) {
+			// System.out.print("\u25FD");
+			// } else {
+			// System.out.print("\u25FE");
+			// }
+			// }
+			// }
 			System.out.println();
 		}
 	}
