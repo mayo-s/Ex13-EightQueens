@@ -20,6 +20,24 @@ public class Chessboard {
 	public void setQueen(int xCord, int yCord) {
 		Position queen = new Position(xCord, yCord);
 		queens.add(queen);
+		setThreats(queen);
+	}
+
+	public void setQueens(int amount) {
+
+		for (int i = 0; i < amount; i++) {
+			for (int j = 0; j < board.length; j++) {
+				for (int k = 0; k < board.length; k++) {
+					Position curr = new Position(j, k);
+					if (!isThreatened(curr)) {
+						setQueen(j, k);
+						printBoard();
+						System.out.println();
+					}
+				}
+			}
+
+		}
 	}
 
 	public void setThreats(Position queen) {
@@ -53,14 +71,11 @@ public class Chessboard {
 
 		while ((posXLeft < board.length - 1) && (posYLeft > 0)) {
 
-
 			posXLeft = posXLeft + 1;
 			posYLeft = posYLeft - 1;
 
 		}
 
-		System.out.println("This is Y:" + posYLeft);
-		System.out.println("This is X:" + posXLeft);
 		Position diaLeftPosition = new Position(posYLeft, posXLeft);
 		diaLeftThreats(diaLeftPosition);
 
@@ -130,31 +145,40 @@ public class Chessboard {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
 
-				// Mark threats
-				if (board[i][j] != true) {
+				// // Mark threats visible
+				// if (board[i][j] != true) {
+				// System.out.print("\u25FD");
+				// } else {
+				// System.out.print("\u25FE");
+				// }
+				// }
+
+				// Normal chess board look
+
+				if (hasQueen(i, j)) {
+					System.out.print("\u2655");
+				} else if (board[i][j] != true) {
 					System.out.print("\u25FD");
 				} else {
 					System.out.print("\u25FE");
 				}
+
 			}
 
-			// Normal chess board look
-			// if (i % 2 == 0) {
-			// if (j % 2 == 0) {
-			// System.out.print("\u25FD");
-			// } else {
-			// System.out.print("\u25FE");
-			// }
-			//
-			// } else {
-			// if (j % 2 != 0) {
-			// System.out.print("\u25FD");
-			// } else {
-			// System.out.print("\u25FE");
-			// }
-			// }
-			// }
 			System.out.println();
 		}
+	}
+
+	public Boolean hasQueen(int x, int y) {
+
+		for (Position curr : queens) {
+			int xCurr = curr.getxCord();
+			int yCurr = curr.getyCord();
+
+			if ((xCurr == x) && (yCurr == y)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
