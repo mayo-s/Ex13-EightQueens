@@ -2,7 +2,7 @@
 public class EightQueens {
 
 	public static void main(String[] args) {
-
+		
 		System.out.println("8 Queens on an 8 x 8 chessboard:");
 		System.out.println();
 		Chessboard myBoard = new Chessboard(8);
